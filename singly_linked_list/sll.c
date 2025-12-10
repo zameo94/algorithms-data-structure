@@ -388,17 +388,20 @@ int sub_tail(SLL_list *list, int new_value) {
     return SLL_SUCCESS;
 }
 
-int sub(SLL_list *list, int old_value, int new_value) {
+int substitution(SLL_list *list, int old_value, int new_value, bool sub_all) {
     if(list == NULL) {
         return SLL_ERROR_LIST_NOT_ALLOCATED;
     }
 
     struct node *current_node = list->head;
 
-    for(int i = 0; i < list->length; i++) {
+    while(current_node != NULL) {
         if(current_node->data == old_value) {
             current_node->data = new_value;
-            break;
+
+            if(!sub_all) {
+                break;
+            }
         }
         current_node = current_node->next;
     }
@@ -406,19 +409,10 @@ int sub(SLL_list *list, int old_value, int new_value) {
     return SLL_SUCCESS;
 }
 
+int sub(SLL_list *list, int old_value, int new_value) {
+    return substitution(list, old_value, new_value, false);
+}
+
 int gsub(SLL_list *list, int old_value, int new_value) {
-    if(list == NULL) {
-        return SLL_ERROR_LIST_NOT_ALLOCATED;
-    }
-
-    struct node *current_node = list->head;
-
-    for(int i = 0; i < list->length; i++) {
-        if(current_node->data == old_value) {
-            current_node->data = new_value;
-        }
-        current_node = current_node->next;
-    }
-
-    return SLL_SUCCESS;
+    return substitution(list, old_value, new_value, true);
 }

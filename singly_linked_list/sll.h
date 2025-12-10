@@ -53,7 +53,9 @@ int get_tail(SLL_list *list, int *output);
 int sub_head(SLL_list *list, int new_value);
 int sub_at(SLL_list *list, int position, int new_value);
 int sub_tail(SLL_list *list, int new_value);
+int substitution(SLL_list *list, int old_value, int new_value, bool sub_all);
 int sub(SLL_list *list, int old_value, int new_value);
+int gsub(SLL_list *list, int old_value, int new_value);
 
 // Utility
 void print_list(SLL_list *list);
