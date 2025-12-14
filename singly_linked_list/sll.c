@@ -306,7 +306,7 @@ int clear_list(SLL_list *list) {
     }
 
     struct node *current = list->head;
-    struct node *next = current->next;
+    struct node *next = NULL;
 
     while(current != NULL) {
         next = current->next;
@@ -364,17 +364,9 @@ int get_at(SLL_list *list, int position, int *output) {
         return SLL_ERROR_INVALID_POSITION;
     }
 
-    if(position == 0) {
-        return get_head(list, output);
-    }
+    struct node *current_node = list->head;
 
-    if(position == (list->length - 1)) {
-        return get_tail(list, output);
-    }
-
-    struct node *current_node = list->head->next;
-
-    for(int i = 1; i < position; i++) {
+    for(int i = 0; i < position; i++) {
         current_node = current_node->next;
     }
 
@@ -430,17 +422,9 @@ int sub_at(SLL_list *list, int position, int new_value) {
         return SLL_ERROR_INVALID_POSITION;
     }
 
-    if(position == 0) {
-        return sub_head(list, new_value);
-    }
+    struct node *current_node = list->head;
 
-    if(position == (list->length - 1)) {
-        return sub_tail(list, new_value);
-    }
-
-    struct node *current_node = list->head->next;
-
-    for(int i = 1; i < position; i++) {
+    for(int i = 0; i < position; i++) {
         current_node = current_node->next;
     }
 
@@ -503,12 +487,8 @@ int index_of(SLL_list *list, int value) {
         return SLL_ERROR_EMPTY;
     }
 
-    if(list->head->data == value) {
-        return 0;
-    }
-
-    int position = 1;
-    struct node *current_node = list->head->next; 
+    int position = 0;
+    struct node *current_node = list->head; 
 
     while(current_node != NULL) {
         if(current_node->data == value) return position;
@@ -550,4 +530,87 @@ int reverse_list(SLL_list *list) {
     list->head = prev;
 
     return SLL_SUCCESS;
+}
+
+int main(void) {
+    SLL_list *my_list2 = initialize_list();
+
+    if(my_list2 == NULL) {
+        printf("Error initializing the list. Aborting\n");
+        return -1;
+    }
+
+    insert_head(my_list2, 5);
+    insert_head(my_list2, 10);
+    insert_head(my_list2, 20);
+    insert_head(my_list2, 30);
+    insert_head(my_list2, 40);
+    insert_head(my_list2, 50);
+
+    print_list(my_list2);
+    printf("List length: %d\n", my_list2->length);
+
+    delete_at(my_list2, 1);
+
+    print_list(my_list2);
+    printf("List length: %d\n", my_list2->length);
+
+    insert_tail(my_list2, 60);
+    print_list(my_list2);
+    printf("List length: %d\n", my_list2->length);
+
+    delete_tail(my_list2);
+    print_list(my_list2);
+    printf("List length: %d\n", my_list2->length);
+
+    insert_at(my_list2, 70, 2);
+    print_list(my_list2);
+    printf("List length: %d\n", my_list2->length);
+
+    insert_at(my_list2, 80, 5);
+    print_list(my_list2);
+    printf("List length: %d\n", my_list2->length);
+
+    insert_at(my_list2, 90, 7);
+    print_list(my_list2);
+    printf("List length: %d\n", my_list2->length);
+
+    insert_at(my_list2, 100, 0);
+    print_list(my_list2);
+    printf("List length: %d\n", my_list2->length);
+
+    sub_head(my_list2, 1);
+    print_list(my_list2);
+
+    sub_at(my_list2, 3,2000);
+    sub_at(my_list2, 4,2000);
+    sub_at(my_list2, 5,2000);
+    print_list(my_list2);
+
+    sub_tail(my_list2, 1000);
+    print_list(my_list2);
+
+    sub(my_list2, 2000, 1);
+    print_list(my_list2);
+
+    gsub(my_list2, 2000, 1);
+    print_list(my_list2);
+
+    printf("index of 30: %d\n", index_of(my_list2, 30));
+
+    reverse_list(my_list2);
+    print_list(my_list2);
+
+    reverse_list(my_list2);
+    print_list(my_list2);
+
+    delete_single_value(my_list2, 1);
+    print_list(my_list2);
+
+    delete_all_value(my_list2, 1);
+    print_list(my_list2);
+
+    free_list(&my_list2);
+
+    return 0;
 }
