@@ -255,7 +255,7 @@ int delete_single_value(SLL_list *list, int value) {
     return delete_value(list, value, false);
 }
 
-int delete_all_value(SLL_list *list, int value) {
+int delete_all_values(SLL_list *list, int value) {
     return delete_value(list, value, true);
 }
 

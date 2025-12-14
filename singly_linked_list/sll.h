@@ -48,7 +48,7 @@ int delete_at(SLL_list *list, int position);
 int delete_tail(SLL_list *list);
 int delete_value(SLL_list *list, int value, bool deleta_all);
 int delete_single_value(SLL_list *list, int value);
-int delete_all_value(SLL_list *list, int value);
+int delete_all_values(SLL_list *list, int value);
 
 // Get
 int get_head(SLL_list *list, int *output);
