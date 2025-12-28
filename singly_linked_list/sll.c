@@ -541,3 +541,61 @@ int reverse_list(SLL_list *list) {
 
     return SLL_SUCCESS;
 }
+
+/* DUPLICATE */
+
+int duplicate_list(SLL_list *original_list, SLL_list *new_list) {
+    if(original_list == NULL) {
+        return SLL_ERROR_LIST_NOT_ALLOCATED;
+    }
+
+    if(new_list == NULL) {
+        return SLL_ERROR_LIST_NOT_ALLOCATED;
+    }
+
+    if(is_empty(original_list)) {
+        return SLL_ERROR_EMPTY;
+    }
+
+    if(!is_empty(new_list)) {
+        clear_list(new_list);
+    }
+
+    struct node *current_node = original_list->head;
+    struct node *prev_new_node = NULL;
+
+    while(current_node != NULL) {
+        struct node *new_node = malloc(sizeof(*new_node));
+
+        if (new_node == NULL) {
+            struct node *tmp_new_node = new_list->head;
+            struct node *node_to_del = NULL;
+
+             while(tmp_new_node != NULL) {
+                node_to_del = tmp_new_node;
+                tmp_new_node = node_to_del->next;
+                free(node_to_del);
+             }
+
+             new_list->head = NULL;
+             new_list->tail = NULL;
+             new_list->length = 0;
+
+             return SLL_ERROR_LIST_NOT_ALLOCATED;
+        }
+
+        new_node->data = current_node->data;
+        new_node->next = NULL;
+
+        if(new_list->head == NULL) new_list->head = new_node;
+        if(prev_new_node != NULL) prev_new_node->next = new_node;
+
+        current_node = current_node->next;
+        prev_new_node = new_node;
+    }
+
+    new_list->tail = prev_new_node;
+    new_list->length = original_list->length;
+
+    return SLL_SUCCESS;
+}

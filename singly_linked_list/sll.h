@@ -71,5 +71,6 @@ int index_of(SLL_list *list, int value);
 bool is_present(SLL_list *list, int value);
 int reverse_list(SLL_list *list);
 int clear_list(SLL_list *list);
+int duplicate_list(SLL_list *original_list, SLL_list *new_list);
 
 #endif
