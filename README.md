@@ -1,4 +1,4 @@
-# Data Structure
+# Algorithms and Data Structure
 
 ## Project Overview
 
