@@ -509,6 +509,46 @@ int index_of(SLL_list *list, int value) {
     return SLL_ERROR_NOT_FOUND;
 }
 
+/* SORT */
+
+static void swap_values(struct node *a, struct node *b) {
+    int tmp = a->data;
+    a->data = b->data;
+    b->data = tmp; 
+}
+
+int sort_list(SLL_list *list) {
+    if(list == NULL) {
+        return SLL_ERROR_LIST_NOT_ALLOCATED;
+    }
+
+    if(list->length < 2) {
+        return SLL_SUCCESS;
+    }
+
+    struct node *current;
+    struct node *last_sorted = NULL;
+    bool swapped;
+
+    do {
+        swapped = false;
+        current = list->head;
+
+        while(current->next != last_sorted) {
+            if(current->data > current->next->data) {
+                swap_values(current, current->next);
+                swapped = true;
+            }
+
+            current = current->next;
+        }
+
+        last_sorted = current;
+    } while(swapped);
+
+    return SLL_SUCCESS;
+}
+
 /* REVERSE */
 
 int reverse_list(SLL_list *list) {
@@ -568,20 +608,8 @@ int duplicate_list(SLL_list *original_list, SLL_list *new_list) {
         struct node *new_node = malloc(sizeof(*new_node));
 
         if (new_node == NULL) {
-            struct node *tmp_new_node = new_list->head;
-            struct node *node_to_del = NULL;
-
-             while(tmp_new_node != NULL) {
-                node_to_del = tmp_new_node;
-                tmp_new_node = node_to_del->next;
-                free(node_to_del);
-             }
-
-             new_list->head = NULL;
-             new_list->tail = NULL;
-             new_list->length = 0;
-
-             return SLL_ERROR_LIST_NOT_ALLOCATED;
+            clear_list(new_list);
+            return SLL_ERROR_LIST_NOT_ALLOCATED;
         }
 
         new_node->data = current_node->data;
