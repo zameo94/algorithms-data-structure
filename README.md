@@ -16,7 +16,7 @@ The primary goal is to practice and deepen understanding of how common data stru
 - **Implemented so far:**
   * Singly linked list
 
-- **Active**: Adding new data algorithms as time allows
+- **Active**: Adding new algorithms as time allows
 - **Implemented so far:**
   * Linear search
 
