@@ -12,13 +12,13 @@
 /*
  * Implementing linear search algorithm, O(n)
 */
-int linear_search(const int *array, size_t len, int x) {
+ssize_t linear_search(const int *array, size_t len, int x) {
     if(array == NULL) return ERROR_ARRAY_NOT_ALLOCATED;
 
     if(len < 1) return ERROR_INVALID_LENGTH;
 
     for(size_t i = 0; i < len; i++) {
-        if(array[i] == x) return (int)i;
+        if(array[i] == x) return i;
     }
 
     return ERROR_NOT_FOUND;
@@ -29,7 +29,7 @@ int main(void) {
     size_t len = sizeof(my_arr) / sizeof(my_arr[0]);
     int x = 10;
 
-    int result = linear_search(my_arr, len, x);
+    ssize_t result = linear_search(my_arr, len, x);
 
     if (result == ERROR_NOT_FOUND) {
     printf("Value %d not found in the array.\n", x);
@@ -38,7 +38,7 @@ int main(void) {
     } else if (result == ERROR_INVALID_LENGTH) {
         printf("Error: Invalid array length.\n");
     } else {
-        printf("Value %d found at position: %d\n", x, result);
+        printf("Value %d found at position: %zd\n", x, result);
     }
 
     return 0;
