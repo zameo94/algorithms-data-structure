@@ -2,8 +2,8 @@
 
 ## Project Overview
 
-This project is a hobby implementation of fundamental data structures in C.  
-The primary goal is to practice and deepen understanding of how common data structures are built and operate at a low level.
+This project is a hobby implementation of fundamental data structures and algorithms in C.  
+The primary goal is to practice and deepen understanding of how common data structures and algorithms are built and operate at a low level.
 
 ## Features
 
@@ -16,13 +16,13 @@ The primary goal is to practice and deepen understanding of how common data stru
 - **Implemented so far:**
   * Singly linked list
 
+- **Active**: Adding new data algorithms as time allows
+- **Implemented so far:**
+  * Linear search
+
 ## Future Plans
 
-- Add more data structures (e.g., stacks, queues, trees, etc.)
-
-## Why?
-
-This repository is meant for personal growth, experimentation, and to serve as a starting point for anyone interested in classic data structures and C programming.
+- Add more data structures (e.g., stacks, queues, trees, etc.) and algorithms
 
 ---
 > _Made with enthusiasm by [zameo94](https://github.com/zameo94)_
