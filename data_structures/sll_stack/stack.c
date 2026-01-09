@@ -86,3 +86,20 @@ int stack_peek(sll_stack *stack, int *output) {
 
     return get_head(stack->list, output);
 }
+
+int main(void) {
+    sll_stack *stack = stack_init();
+    stack_push(stack, 10);
+    stack_push(stack, 20);
+
+    stack_print(stack);
+    
+    int val;
+    stack_pop(stack, &val);
+    printf("Popped: %d\n", val);
+
+    stack_print(stack);
+    
+    stack_free(&stack);
+    return 0;
+}
