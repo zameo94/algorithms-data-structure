@@ -83,7 +83,7 @@ bool queue_is_empty(sll_queue *queue) {
 /* CLEANING FUNCTIONS */
 
 int queue_free(sll_queue **queue_ref) {
-    if(*queue_ref == NULL) return SLL_ERROR_LIST_NOT_ALLOCATED;
+    if(queue_ref == NULL || *queue_ref == NULL) return SLL_ERROR_LIST_NOT_ALLOCATED;
 
     int result = free_list(&((*queue_ref)->list));
 
