@@ -9,7 +9,7 @@ STACK_DIR = .
 
 # Source files
 # We need sll.c to provide the implementation of the list functions
-SRCS = $(SLL_DIR)/sll.c $(STACK_DIR)/stack.c
+SRCS = $(SLL_DIR)/sll.c $(STACK_DIR)/stack.c $(STACK_DIR)/test_stack.c
 OBJS = $(SRCS:.c=.o)
 
 # Name of the executable (inside the current folder)
