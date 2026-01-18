@@ -64,7 +64,7 @@ void queue_print(sll_queue *queue) {
 int queue_size(sll_queue *queue) {
     if(queue == NULL || queue->list == NULL) return SLL_ERROR_LIST_NOT_ALLOCATED;
 
-    return queue->list->length;
+    return length_list(queue->list);
 }
 
 /* BOOLEAN CHECKS */

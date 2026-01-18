@@ -4,6 +4,19 @@
 #include <stdbool.h>
 #include <assert.h>
 
+/* STRCUTS DEFINITION */
+
+struct SLL_list {
+    struct node *head;
+    struct node *tail;
+    int length;
+};
+
+struct node {
+    int data;
+    struct node *next;
+};
+
 /* INITIALIZATION */
 
 SLL_list *initialize_list() {
@@ -630,4 +643,10 @@ int duplicate_list(SLL_list *original_list, SLL_list *new_list) {
     new_list->length = original_list->length;
 
     return SLL_SUCCESS;
+}
+
+/* LENGTH */
+
+int length_list(const SLL_list *list) {
+    return list->length;
 }

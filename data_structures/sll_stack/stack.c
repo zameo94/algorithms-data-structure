@@ -92,7 +92,7 @@ int stack_peek(sll_stack *stack, int *output) {
 int stack_size(sll_stack *stack) {
     if(stack == NULL || stack->list == NULL) return SLL_ERROR_LIST_NOT_ALLOCATED;
 
-    return stack->list->length;
+    return length_list(stack->list);
 }
 
 /* CLEAR */

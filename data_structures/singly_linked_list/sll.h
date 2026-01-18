@@ -22,16 +22,8 @@
 // General Error
 #define SLL_ERROR_NOT_FOUND -40
 
-struct node {
-    int data;
-    struct node *next;
-};
-
-typedef struct {
-    struct node *head;
-    struct node *tail;
-    int length;
-} SLL_list;
+// Struct definition
+typedef struct SLL_list SLL_list;
 
 /* PROTOTYPES FUNCTIONS */
 
@@ -73,5 +65,6 @@ bool is_present(SLL_list *list, int value);
 int reverse_list(SLL_list *list);
 int clear_list(SLL_list *list);
 int duplicate_list(SLL_list *original_list, SLL_list *new_list);
+int length_list(const SLL_list *list);
 
 #endif
