@@ -67,7 +67,7 @@ bool stack_is_empty(sll_stack *stack) {
 /* CLEANING FUNCTIONS */
 
 int stack_free(sll_stack **stack_ref) {
-    if(*stack_ref == NULL) return SLL_ERROR_LIST_NOT_ALLOCATED;
+    if(stack_ref == NULL || *stack_ref == NULL) return SLL_ERROR_LIST_NOT_ALLOCATED;
 
     int result = free_list(&((*stack_ref)->list));
 
@@ -110,34 +110,4 @@ int stack_duplicate(sll_stack *old_stack, sll_stack *new_stack) {
     if(new_stack == NULL || new_stack->list == NULL) return SLL_ERROR_LIST_NOT_ALLOCATED;
 
     return duplicate_list(old_stack->list, new_stack->list);
-}
-
-int main(void) {
-    sll_stack *stack = stack_init();
-    stack_push(stack, 10);
-    stack_push(stack, 20);
-
-    printf("Stack size: %d\n", stack_size(stack));
-    printf("Stack:\n");
-    stack_print(stack);
-
-    sll_stack *stack2 = stack_init();
-    printf("Duplication....\n");
-    stack_duplicate(stack, stack2);
-    printf("Stack 2:\n");
-    stack_print(stack2);
-    
-    int val;
-    stack_pop(stack, &val);
-    printf("Popped: %d\n", val);
-
-    printf("Stack size: %d\n", stack_size(stack));
-    stack_print(stack);
-
-    stack_clear(stack);
-    printf("Stack size: %d\n", stack_size(stack));
-    stack_print(stack);
-    
-    stack_free(&stack);
-    return 0;
 }
