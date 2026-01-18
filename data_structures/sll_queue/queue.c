@@ -111,34 +111,3 @@ int queue_duplicate(sll_queue *old_queue, sll_queue *new_queue) {
 
     return duplicate_list(old_queue->list, new_queue->list);
 }
-
-int main(void) {
-    sll_queue *queue = queue_init();
-    enqueue(queue, 10);
-    enqueue(queue, 20);
-
-    printf("Queue size: %d\n", queue_size(queue));
-    printf("Queue:\n");
-    queue_print(queue);
-
-    sll_queue *queue2 = queue_init();
-    printf("Duplication....\n");
-    queue_duplicate(queue, queue2);
-    printf("Queue 2:\n");
-    queue_print(queue2);
-    
-    int val;
-    dequeue(queue, &val);
-    printf("Dequeue: %d\n", val);
-
-    printf("Queue size: %d\n", queue_size(queue));
-    queue_print(queue);
-
-    queue_clear(queue);
-    printf("Queue size: %d\n", queue_size(queue));
-    queue_print(queue);
-    
-    queue_free(&queue);
-    
-    return 0;
-}
